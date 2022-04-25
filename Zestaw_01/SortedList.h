@@ -53,7 +53,9 @@ public:
                 push_back(item);
                 return;
             } // "ITEM IS THE BIGGEST IN LIST"
-
+            if (find(item) != -1) {
+                return ;
+            }
 
             while (node->next->value <= item && node->next->next != nullptr) {
                 // ustawiamy node na element po ktorym mamy wstawic item
@@ -72,10 +74,65 @@ public:
         } else {
             head = tail = new Node<T>(item);
         }
+    }
+    int find(T item) const { // RETURNS POSITION OF ITEM
+        Node<T> *node = head;
+        int i = 0;
 
+        while (node->next != nullptr) {
+            //std::cout<<"item = "<<item<<"  |  node->value = "<<node->value<< "\n";
+            if (node->value == item) {
+                return i;
+            }
+            i++;
+            node = node->next;
+        }
+        if (node->value == item) {
+            return i;
+        }
+        return -1;
+    }
+    void remove_sorted(const T& item) {
+        int i = find(item);
+        //std::cout<<"Is "<<item<<" present? : " <<i << "\n";
+        if (i != -1) { // IF ITEM IS PRESENT IN LIST
+            if (item == head->value) {
+                pop_front();
+                return;
+            } // "ITEM IS THE SMALLEST IN LIST"
+            if (item == tail->value) {
+                pop_back();
+                return;
+            } // "ITEM IS THE BIGGEST IN LIST"
+
+            Node<T> *node = head->next;
+            Node<T> *before = head;
+            while (node->value != item) {
+                before = before->next;
+                node = node->next;
+            } // POINTS ON NODE TO DELETE
+            before->next = node->next;
+            delete node;
+
+        } else { // ITEM IS NOT PRESENT
+            return;
+        }
     }
     T& front() const { return  head->value; }
     T& back() const {return tail->value; }
+    int pos(int position) const { // RETURNS ITEM AT GIVEN POSITION
+
+        if (empty()) {return -1;}
+        Node<T> *node = head;
+        int i = 0;
+        while (node != nullptr){
+            if (i == position) {
+                return node->value;
+            }
+            node = node->next;
+            i++;
+        }
+    }
     void pop_front() {
         assert(!empty());
         Node<T> *node = head;
@@ -102,7 +159,7 @@ public:
         delete node;
     }
     void clear() {
-        while (!empty()) { pop_front(); }
+        while (!empty()) { pop_front(0); }
     }
     void display() {
         Node<T> *node = head;
