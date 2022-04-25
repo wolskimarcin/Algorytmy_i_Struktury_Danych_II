@@ -11,6 +11,7 @@ private:
 public:
     int N;
 
+
     explicit SetSimple(int initN) {
         N = initN;
         array = new bool[N];

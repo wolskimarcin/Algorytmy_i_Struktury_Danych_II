@@ -4,14 +4,17 @@
 #include "chrono"
 #include "fstream"
 #include "random"
-
+/*
 std::mt19937 rng(std::random_device{}());
 
 int rand_int(int a, int b) {
     return std::uniform_int_distribution<int>(a, b)(rng);
 }
 
+*/
+
 int testSimple() {
+/*
     int pomiary = 1000;
     int N = 500;
 
@@ -47,6 +50,7 @@ int testSimple() {
     }
     insertOF.close();
 
+*/
 
 /*
     ofstream unifyOF;
@@ -72,6 +76,7 @@ int testSimple() {
     }
     unifyOF.close();
 */
+/*
 
     ofstream intersectOF;
     intersectOF.open ("intersect.txt");
@@ -95,6 +100,7 @@ int testSimple() {
         intersectOF << i << " " << suma/pomiary << "\n";
     }
     intersectOF.close();
+*/
 
 /*
     ofstream intersectOF;
