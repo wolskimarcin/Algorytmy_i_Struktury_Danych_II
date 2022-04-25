@@ -45,28 +45,30 @@ public:
 
         if (!empty()) {
             Node<T> *node = head;
-            if(node->next == nullptr) {
+            if (item < head->value) {
+                push_front(item);
+                return;
+            } // "ITEM IS THE SMALLEST IN LIST"
+            if (item > tail->value) {
                 push_back(item);
-            }
+                return;
+            } // "ITEM IS THE BIGGEST IN LIST"
 
-            while (item <= node->value) {
-                if(node->next == nullptr) {
-                    push_back(item);
-                }
+
+            while (node->next->value <= item && node->next->next != nullptr) {
                 // ustawiamy node na element po ktorym mamy wstawic item
-                if (node->value == item) {
+                if (node->value == item){
                     return;
-                }
-                if (node->next == nullptr) {
-                    push_back(item);
                 }
                 node = node->next;
             }
-            if(node->next == nullptr) {
-                node->next = new Node<T>(item);
-            } else {
-                node->next = new Node<T>(item,node->next->next);
-            }
+            if (node->next->value == item || node->value == item) {
+                return;
+            } // NO DUPLICATES
+
+            // "ITEM IS IN BETWEEN TAIL AND HEAD"
+            node->next = new Node<T>(item, node->next);
+
         } else {
             head = tail = new Node<T>(item);
         }

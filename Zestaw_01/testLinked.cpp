@@ -18,6 +18,16 @@ int main() {
     list.insert_sorted(2);
     list.insert_sorted(6);
     list.insert_sorted(5);
+    list.insert_sorted(5);
+    list.insert_sorted(5);
+    list.insert_sorted(5);
+    list.insert_sorted(-5);
+    list.insert_sorted(-5);
+    list.insert_sorted(-1);
+    list.insert_sorted(0);
+    list.insert_sorted(0);list.insert_sorted(0);
+    list.insert_sorted(-1);list.insert_sorted(-1);
+    list.insert_sorted(-1);
 
     list.display();
 
