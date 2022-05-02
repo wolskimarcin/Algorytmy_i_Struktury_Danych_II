@@ -1,5 +1,5 @@
 //
-// Created by busher on 22.03.2022.
+// Sorted set based on array
 //
 using namespace std;
 #ifndef ZESTAW1_SETSIMPLE_H
