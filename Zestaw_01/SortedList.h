@@ -42,7 +42,7 @@ public:
         }
     }
     void insert_sorted(const T& item) {
-
+        if (item < 0) { return;}
         if (!empty()) {
             Node<T> *node = head;
             if (item < head->value) {
@@ -168,6 +168,119 @@ public:
             node = node->next;
         }
         std::cout << std::endl;
+    }
+
+    void sortedMerge(SingleList& other) {
+        Node<T> *other_node = other.head;
+        tail = head;
+        //int i = 0;
+        while (tail != nullptr && other.head != nullptr) {
+            //i++;
+            //std::cout<<"\n("<<i<<") tail = "<< tail->value;
+
+            if (tail->value < other_node->value) {
+                tail = tail->next;
+            } else {
+
+                T old_value = tail->value;
+                Node<T>* old_pointer = tail->next;
+                tail->value = other_node->value;
+                //std::cout<<"\nnew Node("<< old_value <<" , "<< &old_pointer <<") - wstawia nowy item przed tail";
+                tail->next = new Node<T>(old_value, old_pointer);
+                if (other_node->next == nullptr) { return;}
+                other_node = other_node->next;
+            }
+        }
+    }
+
+    void sortedDiff(SingleList& other) {
+
+        if(head->next == nullptr){ return;}
+        //assert(other.head->next != nullptr);
+        Node<T> *node = head->next;
+        Node<T> *before = head;
+        Node<T> *other_node = other.head->next;
+        Node<T> *other_before = other.head;
+        //int i = 0;
+        while(true) {
+            //i++;
+            //std::cout<<"\n("<<i<<")";
+            //std::cout<<"\nbefore("<<before->value<<"), node("<<node->value<<"), other("<<other_node->value<<")";
+            if(other_before->value == node->value) {
+                //assert(before->next != nullptr);
+                if(node->next == nullptr) {pop_back();
+                    break;}
+                before->next = node->next;
+                delete node;
+
+                node = before->next;
+            }
+            if(node->value < other_node->value) {
+                if (node->next != nullptr) {
+                    before = before->next;
+                    node = node->next;
+                }
+                if (node->value == other_node->value) {
+                    pop_back(); break;
+                }
+            } else if (node->value == other_node->value) {
+                //assert(before->next != nullptr);
+                if(node->next == nullptr) {pop_back();
+                    break;}
+                before->next = node->next;
+                delete node;
+                node = before->next;
+                //assert(other_node->next != nullptr);
+                other_node = other_node->next;
+            } else if (node->value > other_node->value) {
+                //assert(other_before->next != nullptr);
+                other_before = other_before->next;
+                //assert(other_node->next != nullptr);
+                other_node = other_node->next;
+            }
+        }
+
+    }
+
+    void sortedIntersection(SingleList& other) {
+
+        if(head->next == nullptr){ return;}
+        //assert(other.head->next != nullptr);
+        Node<T> *node = head->next;
+        Node<T> *before = head;
+        Node<T> *other_node = other.head->next;
+        Node<T> *other_before = other.head;
+        //int i = 0;
+        while(true) {
+            //i++;
+            //std::cout<<"\n("<<i<<")";
+            //std::cout<<"\nbefore("<<before->value<<"), node("<<node->value<<"), other("<<other_node->value<<")";
+
+            if(before->value < other_before->value) {
+                if (node->next != nullptr) {
+
+                    before = before->next;
+                    node = node->next;
+                    pop_front();
+                }
+
+            } else if (before->value == other_before->value) {
+                //assert(before->next != nullptr);
+                before = before->next;
+                if(node->next == nullptr) {
+                    if (node->value != other_node->value) {pop_back();}
+                    break;
+                }
+                node=node->next;
+            } else if (node->value > other_node->value) {
+
+                //assert(other_before->next != nullptr);
+                other_before = other_before->next;
+                //assert(other_node->next != nullptr);
+                other_node = other_node->next;
+            }
+        }
+
     }
 };
 

@@ -1,5 +1,5 @@
 //
-// Created by busher on 05.04.2022.
+// Sorted set based on sorted linked list
 //
 #include <algorithm>
 #include <vector>
@@ -31,14 +31,13 @@ public:
         return (zbior.pos(x));
     }
 
-    void unify(const setLinked &other) {
-        for (int i = 0; i < other.size(); i++) {
-            int valueToAdd = other.zbior.pos(i);
-            if (valueToAdd != -1) {
-                this->add(valueToAdd);
-            }
-        }
+    void diff(setLinked &other) {
+        zbior.sortedDiff(other.zbior);
     }
+    void unify(setLinked &other) {
+        zbior.sortedMerge(other.zbior);
+    }
+
 
     void subtract(const setLinked &other) {
         for (int i = 0; i < other.size(); i++) {
@@ -49,15 +48,8 @@ public:
         }
     }
 
-    void intersect(const setLinked &other) {
-        std::cout<<"\nsize = "<<size()<<"\n";
-        for (int i = 0; i < size(); i++) {
-            std::cout<<"\nis set1 valueAt("<<i<<") ="<<valueAt(i);
-            if (!other.isPresent(valueAt(i))) {
-                remove(valueAt(i));
-            }
-        }
-
+    void intersect(setLinked &other) {
+        zbior.sortedIntersection(other.zbior);
     }
 };
 
