@@ -12,8 +12,8 @@ int rand_int(int a, int b) {
 }
 
 int main() {
-    int pomiary = 10;
-    int N = 100;
+    int pomiary = 50000;
+    int N = 500;
 
 
     setLinked set1;
@@ -21,6 +21,10 @@ int main() {
     for (int i = 1; i <= N; i++) {
         set2.add(rand_int(1,N));
     }
+    for (int i = 1; i <= 1; i++) {
+        set1.add(rand_int(1,N));
+    }
+
 
     chrono::high_resolution_clock clock;
 /*
@@ -47,7 +51,7 @@ int main() {
     }
     insertOF.close();
 */
-
+/*
 
     ofstream unifyOF;
     unifyOF.open ("unify2.txt");
@@ -71,39 +75,35 @@ int main() {
         unifyOF << i << " " << suma/pomiary << "\n";
     }
     unifyOF.close();
-
-/*
-    ofstream intersectOF;
-    intersectOF.open ("intersect.txt");
-    for (int i = 1; i <= N; i++) {
-        long suma = 0;
-        for (int j = 1; j <= pomiary; j++) {
-            set1 = SetSimple(N);
-
-            auto start = clock.now();
-
-            for (int k = 0; k < i; k++) {
-                set1.intersect(set2);
-            }
-
-            auto finish = clock.now();
-            chrono::duration<long, nano> elapsed = finish - start;
-
-            suma = suma + elapsed.count();
-        }
-
-        intersectOF << i << " " << suma/pomiary << "\n";
-    }
-    intersectOF.close();
 */
-
 /*
-    ofstream intersectOF;
-    intersectOF.open ("intersect.txt");
+    ofstream diffOF;
+    diffOF.open ("diff2.txt");
     for (int i = 1; i <= N; i++) {
         long suma = 0;
         for (int j = 1; j <= pomiary; j++) {
-            set1 = SetSimple(N);
+
+
+            auto start = clock.now();
+
+            for (int k = 0; k < i; k++) {
+                set1.diff(set2);
+            }
+
+            auto finish = clock.now();
+            chrono::duration<long, nano> elapsed = finish - start;
+
+            suma = suma + elapsed.count();
+        }
+
+        diffOF << i << " " << suma/pomiary << "\n";
+    }
+    diffOF.close();*/
+    ofstream intersectOF;
+    intersectOF.open ("intersect2.txt");
+    for (int i = 1; i <= N; i++) {
+        long suma = 0;
+        for (int j = 1; j <= pomiary; j++) {
 
             auto start = clock.now();
 
@@ -120,8 +120,6 @@ int main() {
         intersectOF << i << " " << suma/pomiary << "\n";
     }
     intersectOF.close();
-    */
-
 
 
     return 0;
