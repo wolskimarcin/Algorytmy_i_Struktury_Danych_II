@@ -1,6 +1,7 @@
 //
 // Sorted set based on sorted linked list
 //
+
 #include <algorithm>
 #include <vector>
 #ifndef ZESTAW1_SETLINKED_H
@@ -36,16 +37,6 @@ public:
     }
     void unify(setLinked &other) {
         zbior.sortedMerge(other.zbior);
-    }
-
-
-    void subtract(const setLinked &other) {
-        for (int i = 0; i < other.size(); i++) {
-            int otherValue = other.zbior.pos(i);
-            if (isPresent(otherValue)) {
-                this->remove(otherValue);
-            }
-        }
     }
 
     void intersect(setLinked &other) {
