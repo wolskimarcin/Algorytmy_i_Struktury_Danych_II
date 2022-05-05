@@ -12,7 +12,7 @@ int rand_int(int a, int b) {
 }
 
 int main() {
-    int pomiary = 50000;
+    int pomiary = 2000;
     int N = 500;
 
 
@@ -28,7 +28,7 @@ int main() {
 
     chrono::high_resolution_clock clock;
 
-    int wybor = 4; // 1 - insert, 2 - unify, 3 - difference, 4 - intersection
+    int wybor = 1; // 1 - insert, 2 - unify, 3 - difference, 4 - intersection
     if (wybor == 1) {
 
         ofstream insertOF;
