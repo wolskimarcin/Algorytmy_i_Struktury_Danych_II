@@ -12,8 +12,9 @@ struct Node {
 
 template <typename T>
 class SingleList {
-    Node<T> *head, *tail;
 public:
+    Node<T> *head, *tail;
+
     SingleList() : head(nullptr), tail(nullptr) {}
     ~SingleList();
     bool empty() const { return head == nullptr; }
@@ -78,7 +79,9 @@ public:
     int find(T item) const { // RETURNS POSITION OF ITEM
         Node<T> *node = head;
         int i = 0;
-
+        if (head == nullptr) {
+            return -1;
+        }
         while (node->next != nullptr) {
             //std::cout<<"item = "<<item<<"  |  node->value = "<<node->value<< "\n";
             if (node->value == item) {
