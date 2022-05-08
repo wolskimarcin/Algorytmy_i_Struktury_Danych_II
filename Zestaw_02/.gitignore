@@ -2,4 +2,5 @@
 **/cmake-build-debug/*
 .gitignore
 main.cpp
-!**/raport-latex/sprawozdanie03.pdf
+**/raport-latex/*
+!**/raport-latex/zestaw02.pdf
