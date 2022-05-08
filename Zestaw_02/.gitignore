@@ -3,4 +3,4 @@
 .gitignore
 main.cpp
 **/raport-latex/*
-!**/raport-latex/zestaw02.pdf
+!/raport-latex/zestaw02.pdf
