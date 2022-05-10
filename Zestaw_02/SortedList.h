@@ -296,5 +296,5 @@ SingleList<T>::~SingleList() {
         head = node;
     }
     // II sposob.
-    // while (!empty()) { pop_front(); }
+//     while (!empty()) { pop_front(); }
 }

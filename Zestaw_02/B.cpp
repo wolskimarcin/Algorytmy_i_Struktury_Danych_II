@@ -3,6 +3,7 @@
 #include <chrono>
 #include "fstream"
 #include "random"
+#include <assert.h>
 std::mt19937 rng(std::random_device{}());
 
 int rand_int(int a, int b) {
@@ -10,7 +11,7 @@ int rand_int(int a, int b) {
 }
 
 int main() {
-    /*int CAPACITY = 14;
+    int CAPACITY = 9;
     setHashed setA(CAPACITY);
     setHashed setB(CAPACITY);
     setA.insert(1);
@@ -27,7 +28,7 @@ int main() {
     setB.insert(2);
     setB.insert(3);
     setB.insert(9);
-
+/*
     std::cout<<"\nsetB:\n";
     setB.display();
     std::cout<<"\nsetA:\n";
@@ -37,24 +38,24 @@ int main() {
     std::cout<<"\nset3 = setA + setB:\n";
     set3.display();
 
-    set3 = setA - setB;
+    setHashed set4 = setA - setB;
     std::cout<<"\nset3 = setA - setB:\n";
-    set3.display();
+    set4.display();
 
-    set3 = setA * setB;
+    setHashed set5 = setA * setB;
     std::cout<<"\nset3 = setA * setB:\n";
-    set3.display();
+    set5.display();
 
-    std::cout<<"\n[equality test] setA == setB ? (0 if false, 1 if true): " << (setA == setB);
-*/
+    std::cout<<"\n[equality test] setA == setB ? (0 if false, 1 if true): " << (setA == setB);*/
     // ------------TEST BENCH--------------------
-    int pomiary = 100;
+    int pomiary = 1000;
+    int BINS = 500;
     int N = 500;
     std::chrono::high_resolution_clock clock;
     // ------------------------------------------
 
-    setHashed set1(N+1);
-    setHashed set2(N+1);
+    setHashed set1(BINS+1);
+    setHashed set2(BINS+1);
     for (int i = 1; i <= N; i++) {
         set2.insert(rand_int(1,N));
     }
@@ -63,7 +64,7 @@ int main() {
     }
 
 
-    int wybor; // 1 - insert, 2 - unify, 3 - intersection, 4 - difference
+    int wybor = 1; // 1 - insert, 2 - unify, 3 - intersection, 4 - difference
     if (wybor == 1) {
         std::ofstream insertOF;
         insertOF.open ("insert.txt");
