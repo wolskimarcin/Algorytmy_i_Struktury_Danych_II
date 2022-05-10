@@ -137,8 +137,6 @@ public:
     }
 
     bool operator== (setHashed& other) {
-        setHashed newSet(this->CAPACITY);
-
 
         for (int i = 0; i < CAPACITY; i++) {
             if (!other.table[i].empty()) {

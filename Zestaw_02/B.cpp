@@ -63,7 +63,7 @@ int main() {
     }
 
 
-    int wybor = 4; // 1 - insert, 2 - unify, 3 - intersection, 4 - difference
+    int wybor; // 1 - insert, 2 - unify, 3 - intersection, 4 - difference
     if (wybor == 1) {
         std::ofstream insertOF;
         insertOF.open ("insert.txt");
